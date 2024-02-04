@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        <record id="view_order_form_inherited" model="ir.ui.view">
+            <field name="name">sale.order.form.inherited</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="doctor_sale_id"/>
+                </field>
+            </field>
+        </record>
+<!--        <record id="view_sales_report_search_inherited" model="ir.ui.view">-->
+<!--            <field name="name">sale.report.search.inherited</field>-->
+<!--            <field name="model">sale.report</field>-->
+<!--            <field name="inherit_id" ref="sale.view_order_product_search"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//filter[@name='Customer']" position='after'>-->
+<!--                    <field name="doctor_sale_id"/>-->
+<!--                    <separator/>-->
+<!--                    <filter string="Doctor" name="doctor_sale_id" context="{'group_by':'doctor_sale_id'}"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record id="view_sale_report_pivot_inherit" model="ir.ui.view">-->
+<!--            <field name="name">sale.report.pivot.inherit</field>-->
+<!--            <field name="model">sale.report</field>-->
+<!--            <field name="inherit_id" ref="sale.view_order_product_pivot"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <pivot position="inside">-->
+<!--                    &lt;!&ndash; Use a valid XPath expression here &ndash;&gt;-->
+<!--                    <field name="doctor_sale_id" type="row"/>-->
+<!--                </pivot>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="view_partner_doctor_form" model="ir.ui.view">
+            <field name="model">res.partner</field>
+            <field name="name">view.partner.doctor.form</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="is_doctor" widget="boolean_toggle"/>
+                    <field name="birth_date" placeholder="Birth Date" required="1"/>
+                    <field name="member_age" readonly="1" force_save="1"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
