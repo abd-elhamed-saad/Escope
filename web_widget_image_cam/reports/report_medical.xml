@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <template id="report_medical_endoscope">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+
+                    <t t-set="company" t-value="env.company"/>
+                    <div class="page">
+                        <div class="row">
+                            <div class="col-8">
+                                <h2 style="color: red;">
+                                    Colonoscopy Report
+                                    <span t-field="o.name"/>
+                                </h2>
+                                <table class="table table-sm o_main_table">
+                                    <tr>
+                                        <td class="text-center">Patient Name</td>
+                                        <td class="text-center">
+                                            <span t-field="o.pationt_id"/>
+                                        </td>
+
+                                        <td class="text-center">ID :</td>
+                                        <td name="td_partner_id.name" class="text-center">
+                                            <span t-field="o.id_patient"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">Endoscopist :</td>
+                                        <td class="text-center">
+                                            <span t-field="o.doctor_id"/>
+                                        </td>
+
+                                        <td class="text-center">DOB :</td>
+                                        <td name="td_partner_id.name" class="text-center">
+                                            <span t-field="o.birth_date"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">2nd Operator :</td>
+                                        <td class="text-center">
+                                            <span t-field="o.operator"/>
+                                        </td>
+
+                                        <td class="text-center">Age :</td>
+                                        <td name="td_partner_id.name" class="text-center">
+                                            <span t-field="o.age"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">Referred By :</td>
+                                        <td class="text-center">
+                                            <span t-field="o.referred_by"/>
+                                        </td>
+
+                                        <td class="text-center">Date :</td>
+                                        <td name="td_partner_id.name" class="text-center">
+                                            <span t-field="o.date"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="row">
+                                    <strong style="color: blue;">
+                                        INDICATION FOR EXAMINATION
+                                    </strong>
+                                    <br/>
+                                    <t t-if="o.indications">
+                                        <span t-field="o.indications"/>
+                                    </t>
+                                    <t t-else="">
+                                        <br/>
+                                        <br/>
+                                    </t>
+                                </div>
+                                <div class="row">
+                                    <strong style="color: blue;">
+                                        PROCEDURE PERFORMED
+                                    </strong>
+                                    <br/>
+                                    <t t-if="o.procedures">
+                                        <span t-field="o.procedures"/>
+                                    </t>
+                                    <t t-else="">
+                                        <br/>
+                                        <br/>
+                                    </t>
+                                </div>
+                                <div class="row">
+                                    <strong style="color: blue;">
+                                        MEDICATIONS
+                                    </strong>
+                                    <br/>
+                                    <t t-if="o.medications">
+                                        <span t-field="o.medications"/>
+                                    </t>
+                                    <t t-else="">
+                                        <br/>
+                                        <br/>
+                                    </t>
+                                </div>
+                                <div class="row">
+                                    <strong style="color: blue;">
+                                        FINDINGS
+                                    </strong>
+                                    <br/>
+                                    <t t-if="o.findings">
+                                        <span t-field="o.findings"/>
+                                    </t>
+                                    <t t-else="">
+                                        <br/>
+                                        <br/>
+                                    </t>
+                                </div>
+                                <div class="row">
+                                    <strong style="color: blue;">
+                                        CONCLUSIONS
+                                    </strong>
+                                    <br/>
+                                    <t t-if="o.conclusions">
+                                        <span t-field="o.conclusions"/>
+                                    </t>
+                                    <t t-else="">
+                                        <br/>
+                                        <br/>
+                                    </t>
+                                </div>
+                                <div class="row">
+                                    <strong style="color: blue;">
+                                        RECOMMENDATIONS
+                                    </strong>
+                                    <br/>
+                                    <t t-if="o.recommendations">
+                                        <span t-field="o.recommendations"/>
+                                    </t>
+                                    <t t-else="">
+                                        <br/>
+                                        <br/>
+                                    </t>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div>
+                                    <img t-if="o.image_1" t-att-src="image_data_uri(o.image_1)"
+                                         class="company-logo"/>
+                                </div>
+                                <div>
+                                    <img t-if="o.image_2" t-att-src="image_data_uri(o.image_2)"
+                                         class="company-logo"/>
+                                </div>
+                                <div>
+                                    <img t-if="o.image_3" t-att-src="image_data_uri(o.image_3)"
+                                         class="company-logo"/>
+                                </div>
+                                <div>
+                                    <img t-if="o.image_4" t-att-src="image_data_uri(o.image_4)"
+                                         class="company-logo"/>
+                                </div>
+                                <div>
+                                    <img t-if="o.image_5" t-att-src="image_data_uri(o.image_5)"
+                                         class="company-logo"/>
+                                </div>
+                                <div>
+                                    <img t-if="o.image_6" t-att-src="image_data_uri(o.image_6)"
+                                         class="company-logo"/>
+                                </div>
+                                <div>
+                                    <img t-if="o.image_7" t-att-src="image_data_uri(o.image_7)"
+                                         class="company-logo"/>
+                                </div>
+                                <div>
+                                    <img t-if="o.image_8" t-att-src="image_data_uri(o.image_8)"
+                                         class="company-logo"/>
+                                </div>
+                                <div>
+                                    <img t-if="o.image_9" t-att-src="image_data_uri(o.image_9)"
+                                         class="company-logo"/>
+                                </div>
+                                <div>
+                                    <img t-if="o.image_10" t-att-src="image_data_uri(o.image_10)"
+                                         class="company-logo"/>
+                                </div>
+                                <div>
+                                    <img t-if="o.image_11" t-att-src="image_data_uri(o.image_11)"
+                                         class="company-logo"/>
+                                </div>
+                                <div>
+                                    <img t-if="o.image_12" t-att-src="image_data_uri(o.image_12)"
+                                         class="company-logo"/>
+                                </div>
+                                <div>
+                                    <img t-if="o.image_13" t-att-src="image_data_uri(o.image_13)"
+                                         class="company-logo"/>
+                                </div>
+                                <div>
+                                    <img t-if="o.image_14" t-att-src="image_data_uri(o.image_14)"
+                                         class="company-logo"/>
+                                </div>
+                                <div>
+                                    <img t-if="o.image_15" t-att-src="image_data_uri(o.image_15)"
+                                         class="company-logo"/>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
+

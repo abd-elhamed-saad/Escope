@@ -11,11 +11,12 @@
     'installable': True,
     'application': True,
     'auto_install': False,
-    'depends': ['base', 'sale_management', 'sale'],
+    'depends': ['base_setup', 'sale_management', 'sale','stock'],
 
     'data': [
         # 'security/ir.model.access.csv',
         'views/views.xml',
+        'views/stock_picking_view.xml',
         'views/templates.xml',
     ],
 }

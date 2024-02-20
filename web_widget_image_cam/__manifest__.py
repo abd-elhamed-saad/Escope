@@ -8,10 +8,13 @@
     'author': 'ErpMstar Solutions',
     'summary': "Allow you to capture image from your webcam in image widget.",
     'description': "Allow you to capture image from your webcam in image widget.",
-    'depends': ['web', 'point_of_sale', "base"],
+    'depends': ['base', 'web', 'sales_doctor'],
     'data': [
-        # 'views/views.xml',
-        'view/web.xml',
+        'security/ir.model.access.csv',
+        'data/medical_sequence.xml',
+        'view/medical_endoscopes.xml',
+        'view/medical_action_report.xml',
+        'reports/report_medical.xml',
     ],
 
     'assets': {
@@ -20,15 +23,12 @@
             '/web_widget_image_cam/static/src/js/webcam.js',
             '/web_widget_image_cam/static/src/css/widget.css',
             '/web_widget_image_cam/static/src/xml/widget.xml',
-        ],
-        'point_of_sale.assets': [
-            '/web_widget_image_cam/static/src/xml/ResPartner.xml',
-            '/web_widget_image_cam/static/src/js/ResPartner.js',
+
         ],
     },
 
     'images': [
-        'static/description/banner.jpg',
+        'static/description/icon.png',
     ],
     'application': True,
     'installable': True,

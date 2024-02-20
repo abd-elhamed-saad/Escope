@@ -573,7 +573,7 @@ var Webcam = {
 			if ((args[0] instanceof FlashError) || (args[0] instanceof WebcamError)) {
 				message = args[0].message;
 			} else {
-				message = "Could not access webcam: " + args[0].name + ": " +
+				message = "Could not access webcam: " + args[0].name + ": " + 
 					args[0].message + " " + args[0].toString();
 			}
 

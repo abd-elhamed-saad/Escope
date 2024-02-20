@@ -37,30 +37,5 @@
             </t>
         </Dialog>
     </t>
-    <t t-name="web_widget_image_cam.PopCameraDialog" owl="1">
-        <Dialog title="''" size="'lg'">
-            <div class="header">
-                <button class="btn btn-primary" t-on-click="_captureImage">
-                    Capture Image
-                </button>
-                <button class="btn btn-primary save_close_btn" t-on-click="_saveClose">
-                    Save &amp; Close
-                </button>
-                <button class="btn btn-primary" t-on-click.stop="props.close">Close</button>
-            </div>
-            <table width="100%">
-                <tr>
-                    <td width="45%">
-                        <span class="live_cam_img" t-ref="live_cam_img"/>
-                    </td>
-                    <td width="10%">
-                    </td>
-                    <td width="45%">
-                        <span class="webcam_img" t-ref="webcam_img"/>
-                    </td>
-                </tr>
-            </table>
-        </Dialog>
-    </t>
 </templates>
 
