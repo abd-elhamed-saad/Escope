@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "sales_doctor",
+    'name': "change menui name",
     'summary': """    """,
     'description': """   """,
     'author': "Abd El-hamed Saad",
@@ -8,13 +8,11 @@
     'category': 'Uncategorized',
     'version': '0.16',
     'license': "AGPL-3",
-
-    'depends': ['base_setup', 'sale_management', 'sale', 'stock', 'sale_stock',],
-
+    'application': True,
+    'auto_install': False,
+    'depends': ['base', 'sale', 'sale_management', 'stock','sale_stock',],
     'data': [
         # 'security/ir.model.access.csv',
         'views/views.xml',
-        'views/stock_picking_view.xml',
-        'views/templates.xml',
     ],
 }

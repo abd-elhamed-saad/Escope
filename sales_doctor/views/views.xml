@@ -27,7 +27,8 @@
                     <attribute name="string">Refery by</attribute>
                 </xpath>
                 <xpath expr="//field[@name='vat']" position="before">
-                    <field name="nationality_cust"/>
+<!--                    <field name="nationality_cust"/>-->
+                    <field name="nationality_country_id" options="{'no_create': True, 'no_open': True}"/>
                 </xpath>
             </field>
         </record>

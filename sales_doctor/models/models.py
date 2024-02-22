@@ -13,6 +13,8 @@ class ResPartner(models.Model):
     birth_date = fields.Date(string="Date of Birth", tracking=True, )
     member_age = fields.Char(string="Full Age", store=True)
     doctor = fields.Many2one('res.partner', related="sale_order_ids.doctor_sale_id", string="Doctor")
+    nationality_country_id = fields.Many2one('res.country', string='Nationality')
+
 
     @api.onchange('birth_date')
     def _onchange_birth_date(self):
