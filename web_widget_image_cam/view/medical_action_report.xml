@@ -30,4 +30,15 @@
         <field name="paperformat_id" ref="web_widget_image_cam.paperformat_a4_custom_report"/>
 
     </record>
+    <record id="action_report_medical_endoscope_photo" model="ir.actions.report">
+        <field name="name">EndoScope Photo</field>
+        <field name="binding_model_id" ref="web_widget_image_cam.model_medical_endoscopes"/>
+        <field name="model">medical.endoscopes</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">web_widget_image_cam.photo_report_medical_endoscope</field>
+        <field name="report_file">web_widget_image_cam.photo_report_medical_endoscope</field>
+        <field name="print_report_name">'Patient name %s' % (object.patient_id.name).replace('/', '')</field>
+        <field name="paperformat_id" ref="web_widget_image_cam.paperformat_a4_custom_report"/>
+
+    </record>
 </odoo>

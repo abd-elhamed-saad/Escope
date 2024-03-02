@@ -15,6 +15,7 @@
         'view/medical_endoscopes.xml',
         'view/medical_action_report.xml',
         'reports/report_medical.xml',
+        'reports/photo_medical.xml',
     ],
 
     'assets': {

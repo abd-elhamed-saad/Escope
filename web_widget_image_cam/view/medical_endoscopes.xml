@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <record id="medical_endoscopes_view_search" model="ir.ui.view">
+            <field name="name">search.view.endoscope</field>
+            <field name="model">medical.endoscopes</field>
+            <field name="arch" type="xml">
+                <search string="Search Medical Endoscopes">
+                    <field name="name" string="Request Number"/>
+                    <field name="patient_id" string="Patient Name"/>
+                    <field name="doctor_id" string="Doctor"/>
+                    <field name="patient_phone" string="Patient Phone"/>
+                </search>
+            </field>
+        </record>
         <record id="medical_endoscopes_view_tree" model="ir.ui.view">
             <field name="name">medical.endoscopes.view.tree</field>
             <field name="model">medical.endoscopes</field>
@@ -28,30 +40,30 @@
                         </h2>
 
                         <group>
-                            <group>
+                            <group string="Doctor / nurse">
                                 <field name="doctor_id"/>
-                                <field name="operator"/>
-                                <field name="referred_by"/>
-                            </group>
-                            <group>
-                                <field name="id_patient"/>
-                                <field name="age"/>
-                                <field name="birth_date"/>
-                                <field name="date"/>
-                            </group>
-                            <group>
                                 <field name="nurse"/>
                                 <field name="nurse_assistant"/>
                                 <field name="e_device"/>
                             </group>
+                            <group string="Patient Information">
+                                <field name="date"/>
+                                <field name="id_patient"/>
+                                <field name="age"/>
+                                <field name="birth_date"/>
+                                <field name="patient_phone" invisible="0"/>
+                            </group>
+                            <group string="Other information">
+                                <field name="operator"/>
+                                <field name="referred_by"/>
+                            </group>
                         </group>
-                        <group>
+                        <group string="Endoscopy Results">
                             <field name="indications"/>
                             <field name="procedures"/>
                             <field name="medications"/>
                             <field name="findings"/>
                             <field name="conclusions"/>
-                            <field name="recommendations"/>
                         </group>
                         <notebook>
                             <page string="Endoscope camera" name="endoscope">
