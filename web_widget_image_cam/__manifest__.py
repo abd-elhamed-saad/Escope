@@ -23,6 +23,7 @@
             '/web_widget_image_cam/static/src/js/widget.js',
             '/web_widget_image_cam/static/src/js/webcam.js',
             '/web_widget_image_cam/static/src/css/widget.css',
+            '/web_widget_image_cam/static/src/css/custom.scss',
             '/web_widget_image_cam/static/src/xml/widget.xml',
 
         ],
