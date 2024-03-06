@@ -227,13 +227,13 @@ class MedicalEndoscopes(models.Model):
     is_img99 = fields.Boolean(string="Is Image 99", store=True, )
     is_img100 = fields.Boolean(string="Is Image 100", store=True, )
 
-    doctor_id = fields.Many2one('res.partner', string='Doctor', domain=[('is_doctor', '=', True)])
+    doctor_id = fields.Many2one('res.partner', string='EndoScopist', domain=[('is_doctor', '=', True)])
     patient_id = fields.Many2one('res.partner', string='Patient Name')
     operator = fields.Char(string="Operator")
     referred_by = fields.Char(string="Referred By")
     id_patient = fields.Char(string="ID")
-
-    patient_phone = fields.Char(string="Patient Phone", related="patient_id.phone", readonly=True)
+    # age = fields.Integer(string="Age", related="patient_id.member_age")
+    # birth_date = fields.Date(string="Date of Birth", related="patient_id.birth_date")
     date = fields.Datetime(string="Date", default=fields.Datetime.now)
     indications = fields.Text(string="Indication For Examination")
     procedures = fields.Char(string="Procedures")
@@ -244,6 +244,7 @@ class MedicalEndoscopes(models.Model):
     nurse = fields.Char(string="Nurse")
     nurse_assistant = fields.Char(string="Nursing assistant")
     e_device = fields.Integer(string="E-device")
+    patient_phone = fields.Char(string="Patient Phone", related="patient_id.phone", readonly=True)
 
     @api.model_create_multi
     def create(self, vals_list):

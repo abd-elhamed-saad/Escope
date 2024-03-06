@@ -12,17 +12,19 @@
                             Colonoscopy Photo
                             <span t-field="o.name"/>
                         </h2>
-                        <table class="image-table" style="width:100%; border-collapse: collapse;">
+                        <table class="table table-lg m-0 table-borderless border border-right-0 border-left-0 border-info">
                             <tr>
-                                <t t-foreach="range(1, 16)" t-as="num">
-                                    <t t-if="o['image_%s' % num]">
-                                        <td style="width: 33%; padding: 5px; border: none;">
-                                            <img t-att-src="image_data_uri(o['image_%s' % num])"
-                                                 style="width: 100%;height: 4cm;" class="company-logo"/>
+                                <t t-foreach="range(1, 101)" t-as="num">
+                                    <!-- Check if the image exists -->
+                                    <t t-if="o['is_img%s' % num]">
+                                        <!-- Insert the image into the cell -->
+                                        <td style="width: 30%; padding: 5px; border: none;">
+                                            <img t-att-src="image_data_uri(o['img%s' % num])"
+                                                 style="width: 100%; height: 4cm;" class="company-logo"/>
                                         </td>
+                                        <!-- After every third image, close the current row and start a new one -->
                                         <t t-if="(num % 3) == 0">
-                                            <tr>
-                                            </tr>
+                                            <tr></tr>
                                         </t>
                                     </t>
                                 </t>

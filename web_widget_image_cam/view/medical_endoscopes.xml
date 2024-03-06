@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-          <record id="medical_endoscopes_view_search" model="ir.ui.view">
+        <record id="medical_endoscopes_view_search" model="ir.ui.view">
             <field name="name">search.view.endoscope</field>
             <field name="model">medical.endoscopes</field>
             <field name="arch" type="xml">
@@ -13,6 +13,7 @@
                 </search>
             </field>
         </record>
+
         <record id="medical_endoscopes_view_tree" model="ir.ui.view">
             <field name="name">medical.endoscopes.view.tree</field>
             <field name="model">medical.endoscopes</field>
@@ -38,7 +39,7 @@
                             <field class="text-break" options="{'line_breaks': False}" name="patient_id"
                                    placeholder="Select The Patient"/>
                         </h2>
-                         <group>
+                        <group>
                             <group string="Doctor / nurse">
                                 <field name="doctor_id"/>
                                 <field name="nurse"/>
@@ -57,15 +58,15 @@
                                 <field name="referred_by"/>
                             </group>
                         </group>
-                        <group string="Endoscopy Results">
+                        <group>
                             <field name="indications"/>
                             <field name="procedures"/>
                             <field name="medications"/>
                             <field name="findings"/>
                             <field name="conclusions"/>
                             <field name="recommendations"/>
-<!--                            <field name="video"/>-->
-<!--                            <field name="video_data"/>-->
+                            <!--                            <field name="video"/>-->
+                            <!--                            <field name="video_data"/>-->
                         </group>
                         <notebook>
                             <page string="Page One">
