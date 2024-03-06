@@ -7,6 +7,18 @@
                 <t t-call="web.external_layout">
 
                     <t t-set="company" t-value="env.company"/>
+                    <style>
+                        .no-page-break {
+                        page-break-inside: avoid;
+                        }
+
+                        .report-image {
+                        max-height: 700px; /* Adjust based on your page size and margins */
+                        width: auto; /* Maintain aspect ratio */
+                        display: block; /* Remove extra space below images */
+                        margin-bottom: 20px; /* Adjust space between images */
+                        }
+                    </style>
                     <div class="page">
                         <div class="row">
                             <div class="col-8">
@@ -145,7 +157,7 @@
                                     <!-- Dynamically check if the boolean field for the current image is true -->
                                     <t t-if="o['is_img%d' % num]">
                                         <!-- Display the image in its own row -->
-                                        <div class="row mb-2"> <!-- Add a bottom margin for spacing -->
+                                        <div class="row no-page-break"> <!-- Add a bottom margin for spacing -->
                                             <div class="col-12">
                                                 <img t-att-src="image_data_uri(o['img%d' % num])"
                                                      style="width: 100%; height: auto; display: block;"/>
