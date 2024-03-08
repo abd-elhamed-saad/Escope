@@ -1,24 +1,155 @@
 <odoo>
     <data>
-<!--
-        <template id="listing">
-          <ul>
-            <li t-foreach="objects" t-as="object">
-              <a t-attf-href="#{ root }/objects/#{ object.id }">
-                <t t-esc="object.display_name"/>
-              </a>
-            </li>
-          </ul>
-        </template>
-        <template id="object">
-          <h1><t t-esc="object.display_name"/></h1>
-          <dl>
-            <t t-foreach="object._fields" t-as="field">
-              <dt><t t-esc="field"/></dt>
-              <dd><t t-esc="object[field]"/></dd>
+        <record id="paperformat_a4_patient_report" model="report.paperformat">
+            <field name="name">custom</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">15</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="sale_order_endoscope_sale" model="ir.actions.report">
+            <field name="name">Reception patient</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sales_doctor.report_new_endoscope</field>
+            <field name="report_file">sales_doctor.report_new_endoscope</field>
+            <field name="print_report_name">'Order %s' % (object.partner_id.name).replace('/', '')</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="sales_doctor.paperformat_a4_patient_report"/>
+
+        </record>
+        <template id="report_new_endoscope">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="sales_doctor.patient_new_reception" t-lang="doc.partner_id.lang"/>
+                </t>
             </t>
-          </dl>
         </template>
--->
+
+
+        <template id="patient_new_reception">
+            <t t-call="web.basic_layout">
+                <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
+                <table class="table table-sm" dir="rtl">
+                    <tbody style="display: table-row-group">
+                        <tr>
+                            <th class="text-center">اسم المريض :</th>
+                            <td class="text-center font-weight-bold">
+                                <span t-field="doc.partner_id.name"/>
+                            </td>
+                            <th class="text-center">الرقم الطبي :</th>
+                            <td class="text-center">
+                                <span/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">محل الاقامة :</th>
+                            <td class="text-center" colspan="3">
+                                <span t-field="doc.partner_id.street"/>
+                                /
+                                <span t-field="doc.partner_id.city"/>
+                                /
+                                <span t-field="doc.partner_id.street2"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">تاريخ الميلاد :</th>
+                            <td class="text-center">
+                                <span t-field="doc.partner_id.birth_date"/>
+                            </td>
+                            <th class="text-center">الديانه :</th>
+                            <td class="text-center">
+                                <span/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">دكتور التحويل :</th>
+                            <td class="text-center">
+                                <span t-field="doc.doctor_sale_id"/>
+                            </td>
+                            <th class="text-center">السن :</th>
+                            <td class="text-center">
+                                <span t-field="doc.partner_id.member_age"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">النوع :</th>
+                            <td class="text-center">
+                                <span/>
+                            </td>
+                            <th class="text-center">تاريخ الدخول :</th>
+                            <td class="text-center">
+                                <span t-field="doc.date_order"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">الجنسية :</th>
+                            <td class="text-center">
+                                <span t-field="doc.partner_id.nationality_country_id"/>
+                            </td>
+                            <th class="text-center">رقم البطاقة :</th>
+                            <td class="text-center">
+                                <span/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">الوظيفة :</th>
+                            <td class="text-center">
+                                <span t-field="doc.partner_id.function"/>
+                            </td>
+                            <th class="text-center">موبايل :</th>
+                            <td class="text-center">
+                                <span t-field="doc.partner_id.phone"/>
+                                /
+                                <span t-field="doc.partner_id.mobile"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">الاميل :</th>
+                            <td class="text-center">
+                                <span t-field="doc.partner_id.email"/>
+                            </td>
+                            <th class="text-center">مصدر الدخول :</th>
+                            <td class="text-center">
+                              <span t-field="doc.partner_id.category_id"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">نوع الدخول :</th>
+                            <td class="text-center">
+                                <span/>
+                            </td>
+                            <th class="text-center">الطبيب الاستشاري :</th>
+                            <td class="text-center">
+                                <span/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">شركة التأمين :</th>
+                            <td class="text-center">
+                                <span/>
+                            </td>
+                            <th class="text-center">القائمة :</th>
+                            <td class="text-center">
+                                <span/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </t>
+        </template>
+
     </data>
 </odoo>

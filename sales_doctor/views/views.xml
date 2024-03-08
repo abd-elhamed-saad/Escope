@@ -8,6 +8,33 @@
                 <field name="partner_id" position="after">
                     <field name="doctor_sale_id"/>
                 </field>
+                <xpath expr="//button[@name='action_confirm']" position="attributes">
+                    <attribute name="invisible">state not in ['exit_telescope']</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_draft']" position="attributes">
+                    <attribute name="string">Set To Reception</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm']" position="before">
+
+                    <button type="object" name="action_wake_up" string="Inter Telescope" class="btn-primary"
+                            invisible="state != 'draft'"/>
+
+                    <button type="object" name="action_inter_telescope" string="Wake Up" class="btn-primary"
+                            invisible="state != 'wake_up'"/>
+
+                    <button type="object" name="action_exit_telescope" string="Exit Telescope" class="btn-primary"
+                            invisible="state != 'inter_telescope'"/>
+
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="inter_telescope_date" invisible="not inter_telescope_date"/>
+                    <field name="wake_up_date" invisible="not wake_up_date"/>
+                    <field name="exit_telescope_date" invisible="not exit_telescope_date"/>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="replace">
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,sent,inter_telescope,wake_up,exit_telescope,sale"/>
+                </xpath>
             </field>
         </record>
         <!-- Inherit the existing search view for sales orders -->
