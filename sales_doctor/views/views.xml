@@ -16,14 +16,14 @@
                 </xpath>
                 <xpath expr="//button[@name='action_confirm']" position="before">
 
-                    <button type="object" name="action_wake_up" string="Inter Telescope" class="btn-primary"
+                    <button type="object" name="action_inter_telescope" string="Inter Telescope" class="btn-primary"
                             invisible="state != 'draft'"/>
 
-                    <button type="object" name="action_inter_telescope" string="Wake Up" class="btn-primary"
-                            invisible="state != 'wake_up'"/>
+                    <button type="object" name="action_wake_up" string="Wake Up" class="btn-primary"
+                            invisible="state != 'inter_telescope'"/>
 
                     <button type="object" name="action_exit_telescope" string="Exit Telescope" class="btn-primary"
-                            invisible="state != 'inter_telescope'"/>
+                            invisible="state != 'wake_up'"/>
 
                 </xpath>
                 <xpath expr="//field[@name='payment_term_id']" position="after">

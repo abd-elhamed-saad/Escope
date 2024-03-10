@@ -25,8 +25,8 @@ class SaleOrder(models.Model):
                              tracking=3, default='draft')
 
     # Add new date fields for each of the new states
-    wake_up_date = fields.Datetime(string="Wake Up Date", readonly=True)
     inter_telescope_date = fields.Datetime(string="Inter Telescope Date", readonly=True)
+    wake_up_date = fields.Datetime(string="Wake Up Date", readonly=True)
     exit_telescope_date = fields.Datetime(string="Exit Telescope Date", readonly=True)
 
     def action_wake_up(self):
