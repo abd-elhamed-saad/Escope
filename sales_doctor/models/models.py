@@ -5,15 +5,15 @@ from datetime import date , datetime
 from dateutil.relativedelta import relativedelta
 from odoo.exceptions import UserError, ValidationError
 
-SALE_ORDER_STATE = [
-    ('draft', "Reception"),
-    ('sent', "Reception Sent"),
-    ('inter_telescope', "Inter Telescope"),
-    ('wake_up', "Wake Up"),
-    ('exit_telescope', "Exit Telescope"),
-    ('sale', "Sales Order"),
-    ('cancel', "Cancelled"),
-]
+# SALE_ORDER_STATE = [
+#     ('draft', "Reception"),
+#     ('sent', "Reception Sent"),
+#     ('inter_telescope', "Inter Telescope"),
+#     ('wake_up', "Wake Up"),
+#     ('exit_telescope', "Exit Telescope"),
+#     ('sale', "Sales Order"),
+#     ('cancel', "Cancelled"),
+# ]
 
 
 class SaleOrder(models.Model):
@@ -21,34 +21,34 @@ class SaleOrder(models.Model):
 
     doctor_sale_id = fields.Many2one('res.partner', string='Doctor', domain=[('is_doctor', '=', True)])
 
-    state = fields.Selection(selection=SALE_ORDER_STATE, string="Status", readonly=True, copy=False, index=True,
-                             tracking=3, default='draft')
-
-    inter_telescope_date = fields.Datetime(string="Inter Telescope Date", readonly=True)
-    wake_up_date = fields.Datetime(string="Wake Up Date", readonly=True)
-    exit_telescope_date = fields.Datetime(string="Exit Telescope Date", readonly=True)
-
-    def action_wake_up(self):
-        self.ensure_one()
-        self.write({'state': 'wake_up', 'wake_up_date': fields.Datetime.now()})
-
-    def action_inter_telescope(self):
-        self.ensure_one()
-        self.write({'state': 'inter_telescope', 'inter_telescope_date': fields.Datetime.now()})
-
-    def action_exit_telescope(self):
-        self.ensure_one()
-        self.write({'state': 'exit_telescope', 'exit_telescope_date': fields.Datetime.now()})
-
-    def action_confirm(self):
-        if self.state not in ['exit_telescope']:
-            raise UserError("Order can only be confirmed After Exit Telescope states.")
-        super(SaleOrder, self).action_confirm()
-
-    def _can_be_confirmed(self):
-        self.ensure_one()
-        return self.state in {'draft', 'sent', 'exit_telescope'}
-        super()._can_be_confirmed()
+    # state = fields.Selection(selection=SALE_ORDER_STATE, string="Status", readonly=True, copy=False, index=True,
+    #                          tracking=3, default='draft')
+    #
+    # inter_telescope_date = fields.Datetime(string="Inter Telescope Date", readonly=True)
+    # wake_up_date = fields.Datetime(string="Wake Up Date", readonly=True)
+    # exit_telescope_date = fields.Datetime(string="Exit Telescope Date", readonly=True)
+    #
+    # def action_wake_up(self):
+    #     self.ensure_one()
+    #     self.write({'state': 'wake_up', 'wake_up_date': fields.Datetime.now()})
+    #
+    # def action_inter_telescope(self):
+    #     self.ensure_one()
+    #     self.write({'state': 'inter_telescope', 'inter_telescope_date': fields.Datetime.now()})
+    #
+    # def action_exit_telescope(self):
+    #     self.ensure_one()
+    #     self.write({'state': 'exit_telescope', 'exit_telescope_date': fields.Datetime.now()})
+    #
+    # def action_confirm(self):
+    #     if self.state not in ['exit_telescope']:
+    #         raise UserError("Order can only be confirmed After Exit Telescope states.")
+    #     super(SaleOrder, self).action_confirm()
+    #
+    # def _can_be_confirmed(self):
+    #     self.ensure_one()
+    #     return self.state in {'draft', 'sent', 'exit_telescope'}
+    #     super()._can_be_confirmed()
 
 
 class ResPartner(models.Model):
