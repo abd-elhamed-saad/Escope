@@ -5,8 +5,14 @@ import { useService } from "@web/core/utils/hooks";
 const { Component, onMounted, useRef, onWillDestroy } = owl;
 import { patch } from "@web/core/utils/patch";
 import { jsonrpc } from "@web/core/network/rpc_service";
+//const script = document.createElement('script');
+//script.src = 'https://cdn.webrtc-experiment.com/RecordRTC.js';
+//document.head.appendChild(script);
 const script = document.createElement('script');
 script.src = 'https://cdn.webrtc-experiment.com/RecordRTC.js';
+script.onload = function() {
+    // Code that depends on RecordRTC can go here
+};
 document.head.appendChild(script);
 class ImageCaptureDialog extends Component {
     setup() {

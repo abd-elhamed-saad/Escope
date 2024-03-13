@@ -1,0 +1,69 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* change_menui_name
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-12 21:59+0000\n"
+"PO-Revision-Date: 2024-03-13 00:00+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: sale
+#: model:ir.model.fields,field_description:sale.field_sale_order__partner_id
+#: model:ir.model.fields,field_description:sale.field_sale_order_line__order_partner_id
+#: model:ir.model.fields,field_description:sale.field_sale_report__partner_id
+msgid "Customer"
+msgstr "اسم المريض"
+
+#. module: sale
+#: model_terms:ir.ui.view,arch_db:sale.view_order_product_search
+#: model_terms:ir.ui.view,arch_db:sale.view_sales_order_filter
+msgid "Customer"
+msgstr "اسم المريض"
+
+
+#. module: change_menui_name
+#: model_terms:ir.ui.view,arch_db:change_menui_name.view_order_form_inherit_change_name
+msgid "Add a medical procedure"
+msgstr "إضافة إجراء طبي"
+
+#. module: change_menui_name
+#: model_terms:ir.ui.view,arch_db:change_menui_name.view_picking_form_change
+msgid "End/Out Date"
+msgstr "تاريخ الانتهاء\\الخروج"
+
+#. module: change_menui_name
+#: model_terms:ir.ui.view,arch_db:change_menui_name.view_order_form_inherit_change_name
+msgid "Endoscope Room"
+msgstr "غرفة المنظار"
+
+#. module: change_menui_name
+#: model_terms:ir.ui.view,arch_db:change_menui_name.view_order_form_inherit_change_name
+#: model_terms:ir.ui.view,arch_db:change_menui_name.view_picking_form_change
+msgid "Enter Date"
+msgstr "تاريخ الدخول"
+
+#. module: change_menui_name
+#: model_terms:ir.ui.view,arch_db:change_menui_name.view_order_form_inherit_change_name
+#: model_terms:ir.ui.view,arch_db:change_menui_name.view_picking_form_change
+msgid "Medical Procedure"
+msgstr "إجراء طبي"
+
+#. module: change_menui_name
+#: model_terms:ir.ui.view,arch_db:change_menui_name.view_picking_form_change
+msgid "Patient Name"
+msgstr "اسم المريض"
+
+#. module: change_menui_name
+#: model_terms:ir.ui.view,arch_db:change_menui_name.view_order_form_inherit_change_name
+msgid "Reception Date"
+msgstr "تاريخ الاستقبال"

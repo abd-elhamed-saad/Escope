@@ -24,7 +24,6 @@ class SaleOrder(models.Model):
     state = fields.Selection(selection=SALE_ORDER_STATE, string="Status", readonly=True, copy=False, index=True,
                              tracking=3, default='draft')
 
-    # Add new date fields for each of the new states
     inter_telescope_date = fields.Datetime(string="Inter Telescope Date", readonly=True)
     wake_up_date = fields.Datetime(string="Wake Up Date", readonly=True)
     exit_telescope_date = fields.Datetime(string="Exit Telescope Date", readonly=True)
