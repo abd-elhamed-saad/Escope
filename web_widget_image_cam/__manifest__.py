@@ -5,6 +5,7 @@
     'version': '1.0',
     'category': 'Tool',
     'sequence': 6,
+    'license': "LGPL-3",
     'author': 'ErpMstar Solutions',
     'summary': "Allow you to capture image from your webcam in image widget.",
     'description': "Allow you to capture image from your webcam in image widget.",

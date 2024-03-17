@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="inherit_web_widget_form" model="ir.ui.view">
+            <field name="name">inherit web widget</field>
+            <field name="model">medical.endoscopes</field>
+            <field name="inherit_id" ref="web_widget_image_cam.medical_endoscopes_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='nurse_assistant']" position="after">
+                    <field name="e_device_ids" options="{'no_create': True}"/>
+                </xpath>
+                <xpath expr="//field[@name='date']" position="before">
+                    <field name="process_ids" options="{'no_create': True}"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

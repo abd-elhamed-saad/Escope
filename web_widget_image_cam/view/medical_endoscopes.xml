@@ -33,7 +33,7 @@
                 <form string="medical_endoscopes_form" js_class="medical_endoscopes_form">
                     <sheet>
                         <h1>
-                            <field name="name"/>
+                            <field name="name"  />
                         </h1>
                         <h2>
                             <field class="text-break" options="{'line_breaks': False}" name="patient_id"
@@ -41,30 +41,29 @@
                         </h2>
                         <group>
                             <group string="Doctor / nurse">
-                                <field name="doctor_id"/>
-                                <field name="nurse"/>
-                                <field name="nurse_assistant"/>
-                                <field name="e_device"/>
+                                <field name="doctor_id" placeholder="Doctor Name"/>
+                                <field name="nurse" placeholder="Nurses"/>
+                                <field name="nurse_assistant" placeholder="Nurse Assistant"/>
                             </group>
                             <group string="Patient Information">
-                                <field name="date"/>
-                                <field name="id_patient"/>
+                                <field name="date" placeholder="Date"/>
+                                <field name="id_patient" placeholder="Patient ID"/>
                                 <field name="age"/>
-                                <field name="birth_date"/>
+                                <field name="birth_date" invisible="1"/>
                                 <field name="patient_phone" invisible="1"/>
                             </group>
                             <group string="Other information">
-                                <field name="operator"/>
-                                <field name="referred_by"/>
+                                <field name="operator" placeholder="Operator ....."/>
+                                <field name="referred_by" placeholder="Referred By ....."/>
                             </group>
                         </group>
                         <group>
-                            <field name="indications"/>
-                            <field name="procedures"/>
-                            <field name="medications"/>
-                            <field name="findings"/>
-                            <field name="conclusions"/>
-                            <field name="recommendations"/>
+                            <field name="indications" placeholder="Indications ....."/>
+                            <field name="procedures" placeholder="Procedures ....."/>
+                            <field name="medications" placeholder="Medications ....."/>
+                            <field name="findings" placeholder="Findings ....."/>
+                            <field name="conclusions" placeholder="Conclusion ....."/>
+                            <field name="recommendations" placeholder="Recommendations ....."/>
                             <!--                            <field name="video"/>-->
                             <!--                            <field name="video_data"/>-->
                         </group>
@@ -1143,8 +1142,14 @@
             <field name="res_model">medical.endoscopes</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <menuitem id="medical_endoscopes_menu" name="Medical Endoscopes" action="medical_endoscopes_action"
+        <menuitem id="medical_endoscopes_menu" name="Medical"
                   web_icon="web_widget_image_cam,static/description/icon.png"/>
+
+
+        <menuitem id="medical_endoscopes_new_menu" name="Medical Endoscopes"
+                  parent="medical_endoscopes_menu"
+                  action="medical_endoscopes_action"
+                  sequence="1"/>
 
 
     </data>

@@ -243,8 +243,9 @@ class MedicalEndoscopes(models.Model):
     recommendations = fields.Text(string="Recommendations")
     nurse = fields.Char(string="Nurse")
     nurse_assistant = fields.Char(string="Nursing assistant")
-    e_device = fields.Integer(string="E-device")
     patient_phone = fields.Char(string="Patient Phone", related="patient_id.phone", readonly=True)
+
+    sale_order_id = fields.Many2one('sale.order', string="Sale Order")
 
     @api.model_create_multi
     def create(self, vals_list):
