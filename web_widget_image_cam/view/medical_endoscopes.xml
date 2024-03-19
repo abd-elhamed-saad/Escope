@@ -41,7 +41,7 @@
                         </h2>
                         <group>
                             <group string="Doctor / nurse">
-                                <field name="doctor_id" placeholder="Doctor Name"/>
+                                <field name="doctor_id" placeholder="Doctor Name" />
                                 <field name="nurse" placeholder="Nurses"/>
                                 <field name="nurse_assistant" placeholder="Nurse Assistant"/>
                             </group>

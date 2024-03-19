@@ -6,7 +6,7 @@ from odoo import models, fields, api
 class NewModule(models.Model):
     _inherit = 'medical.endoscopes'
 
-    e_device_ids = fields.Many2one('e.device', string='E- Devices')
+    e_device_ids = fields.Many2one('e.device', string='Scope Number')
     process_ids = fields.Many2one('process.name',  string='Process Name')
 
 

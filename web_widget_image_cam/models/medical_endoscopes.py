@@ -227,7 +227,7 @@ class MedicalEndoscopes(models.Model):
     is_img99 = fields.Boolean(string="Is Image 99", store=True, )
     is_img100 = fields.Boolean(string="Is Image 100", store=True, )
 
-    doctor_id = fields.Many2one('res.partner', string='EndoScopist', domain=[('is_doctor', '=', True)])
+    doctor_id = fields.Many2one('res.partner', string='Doctor', domain=[('is_doctor', '=', True)])
     patient_id = fields.Many2one('res.partner', string='Patient Name')
     operator = fields.Char(string="Operator")
     referred_by = fields.Char(string="Referred By")

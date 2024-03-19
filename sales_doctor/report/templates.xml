@@ -40,119 +40,120 @@
         <template id="patient_new_reception">
             <t t-call="web.basic_layout">
                 <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
-                <table border="1" class="table table-sm" style="font-size:15px;padding:2px;" dir="rtl">
-                    <tbody style="display: table-row-group">
-                        <tr>
-                            <th class="text-center">اسم المريض :</th>
-                            <td class="text-center font-weight-bold">
-                                <span t-field="doc.partner_id.name"/>
-                            </td>
-                            <th class="text-center">الرقم الطبي :</th>
-                            <td class="text-center">
-                                <span/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">محل الاقامة :</th>
-                            <td class="text-center" colspan="3">
-                                <span t-field="doc.partner_id.street"/>
-                                /
-                                <span t-field="doc.partner_id.city"/>
-                                /
-                                <span t-field="doc.partner_id.street2"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">تاريخ الميلاد :</th>
-                            <td class="text-center">
-                                <span t-field="doc.partner_id.birth_date"/>
-                            </td>
-                            <th class="text-center">الديانه :</th>
-                            <td class="text-center">
-                                <span/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">دكتور التحويل :</th>
-                            <td class="text-center">
-                                <span t-field="doc.doctor_sale_id"/>
-                            </td>
-                            <th class="text-center">السن :</th>
-                            <td class="text-center">
-                                <span t-field="doc.partner_id.member_age"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">النوع :</th>
-                            <td class="text-center">
-                                <span/>
-                            </td>
-                            <th class="text-center">تاريخ الدخول :</th>
-                            <td class="text-center">
-                                <span t-field="doc.date_order"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">الجنسية :</th>
-                            <td class="text-center">
-                                <span t-field="doc.partner_id.nationality_country_id"/>
-                            </td>
-                            <th class="text-center">رقم البطاقة :</th>
-                            <td class="text-center">
-                                <span/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">الوظيفة :</th>
-                            <td class="text-center">
-                                <span t-field="doc.partner_id.function"/>
-                            </td>
-                            <th class="text-center">موبايل :</th>
-                            <td class="text-center">
-                                <span t-field="doc.partner_id.phone"/>
-                                /
-                                <span t-field="doc.partner_id.mobile"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">الاميل :</th>
-                            <td class="text-center">
-                                <span t-field="doc.partner_id.email"/>
-                            </td>
-                            <th class="text-center">مصدر الدخول :</th>
-                            <td class="text-center">
-                                <span t-field="doc.partner_id.category_id"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">نوع الدخول :</th>
-                            <td class="text-center">
-                                <span/>
-                            </td>
-                            <th class="text-center">الطبيب الاستشاري :</th>
-                            <td class="text-center">
-                                <span/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">شركة التأمين :</th>
-                            <td class="text-center">
-                                <span/>
-                            </td>
-                            <th class="text-center">القائمة :</th>
-                            <td class="text-center">
-                                <span/>
-                            </td>
-                        </tr>
-                    </tbody>
+                <table border="1" style="width: 100%;padding: 15px;text-align: center;" dir="rtl">
+                    <tr>
+                        <td>
+                            <span>اسم المريض :</span>
+                        </td>
+                        <td>
+                            <span t-field="doc.partner_id.name"/>
+                        </td>
+                        <td>الرقم الطبي :</td>
+                        <td>
+                            <span>.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>محل الاقامة :</td>
+                        <td colspan="3">
+                            <span t-field="doc.partner_id.street"/>
+                            /
+                            <span t-field="doc.partner_id.street2"/>
+                            /
+                            <span t-field="doc.partner_id.city"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>تاريخ الميلاد :</td>
+                        <td>
+                            <span t-field="doc.partner_id.birth_date"/>
+                        </td>
+                        <td>الديانه :</td>
+                        <td>
+                            <span>.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>دكتور التحويل :</td>
+                        <td>
+                            <span t-field="doc.doctor_sale_id"/>
+                        </td>
+                        <td>السن :</td>
+                        <td>
+                            <span t-field="doc.partner_id.member_age"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>النوع :</td>
+                        <td>
+                            <span>.</span>
+                        </td>
+                        <td>تاريخ الدخول :</td>
+                        <td>
+                            <span t-field="doc.date_order"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>الجنسية :</td>
+                        <td>
+                            <span t-field="doc.partner_id.nationality_country_id"/>
+                        </td>
+                        <td>رقم البطاقة :</td>
+                        <td>
+                            <span t-field="doc.partner_id.vat"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>الوظيفة :</td>
+                        <td>
+                            <span t-field="doc.partner_id.function"/>
+                        </td>
+                        <td>موبايل :</td>
+                        <td>
+                            <span t-field="doc.partner_id.phone"/>
+                            /
+                            <span t-field="doc.partner_id.mobile"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>الاميل :</td>
+                        <td>
+                            <span t-field="doc.partner_id.email"/>
+                        </td>
+                        <td>مصدر الدخول :</td>
+                        <td>
+                            <span t-field="doc.partner_id.category_id"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>نوع الدخول :</td>
+                        <td>
+                            <span>.</span>
+                        </td>
+                        <td>الطبيب الاستشاري :</td>
+                        <td>
+                            <span>.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>شركة التأمين :</td>
+                        <td>
+                            <span>.</span>
+                        </td>
+                        <td>القائمة :</td>
+                        <td>
+                            <span>.</span>
+                        </td>
+                    </tr>
                 </table>
+
                 <div class="row" dir="rtl">
                     <span>
                         * يملئ هذا الجزء بواسطة موظف الاستقبال و يتم تسجيل البيانات علي البرنامج الخاص بتسجيل المرضي .
                     </span>
                 </div>
 
-                <table border="1" style="width: 100%;padding: 15px;text-align: center;" dir="rtl">
+                <table border="1" style="width: 100%;padding: 10px;text-align: center;" dir="rtl">
                     <tr>
                         <td>
                             <span>شكوي المريض</span>
@@ -174,7 +175,7 @@
                             <span>الامراض المزمنة</span>
                         </td>
                         <td colspan="3">
-                            <table style="width: 100%;padding: 20px;text-align: center;">
+                            <table style="width: 100%;text-align: center;">
                                 <thead>
                                     <tr>
                                         <td>
@@ -222,10 +223,10 @@
                         <td>
                             <span>المناظير السابقة</span>
                         </td>
-                        <td>
+                        <td style="width: 2cm;">
                             <span>لا</span>
                         </td>
-                        <td>
+                        <td style="width: 2cm; ">
                             <span>نعم</span>
                         </td>
                         <td>
@@ -355,122 +356,127 @@
                     </span>
                 </div>
                 <div class="row" dir="rtl">
-                    <ul style="list-style-type: none; padding: 0;">
-                        <li>أقر بأننى اطلعت على لائحة اسعار المركز وسوف أقوم بدفع تكاليف الخدمات الطبية وغيرها المقدمه
+                    <ul style="list-style-type: none; padding: 3px;">
+                        <li style="margin-bottom: 5px;">أقر بأننى اطلعت على لائحة اسعار المركز وسوف أقوم بدفع تكاليف
+                            الخدمات الطبية وغيرها المقدمه
                             لى من قبل المركز وأتعهد بسداد أى دفعات تطلب منى. كما أتعهد بسداد كامل الحساب قبل مغادرة
                             المريض المركز.
                         </li>
-                        <li>أقر بأننى على علم بعمل الأجراء خلال تفشى فيروس الكورونا بالبلاد.</li>
+                        <li style="margin-bottom: 5px;">أقر بأننى على علم بعمل الأجراء خلال تفشى فيروس الكورونا
+                            بالبلاد.
+                        </li>
                         <li>أقر بالموافقه على دخول المركز بداية لأغراض التشخيص وتلقى العلاج وفقاً للبرنامج الذى تم وضعه
                             بواسطة الطبيب الاستشارى او أعضاء الفريق الطبى بالمركز طبقا لما تتطلبه حالتى الصحية، و ان
                             اجراء المنظار سواء كان تشخيصى او تداخلى هو مسئولية الطبيب القائم بالمنظار مسئولية كاملة.
                         </li>
-                        <li>وقد شرح لي الطبيب ماهية المنظار وأسباب عمله ومضاعفاته وبدائله، ولقد سمح لي بالتساؤل عن أية
+                        <li style="margin-bottom: 5px;">وقد شرح لي الطبيب ماهية المنظار وأسباب عمله ومضاعفاته وبدائله،
+                            ولقد سمح لي بالتساؤل عن أية
                             معلومات عن الإجراء. وأيضاً أفوض الطبيب لعمل اللازم أثناء المنظار (ربط أو حقن دوالي المرئ
                             والمعدة، استئصال زوائد لحمية، محاولة إيقاف النزيف، توسيع، استخدام جهاز الارجون، تركيب بالونة
                             معدية، تركيب دعامات، أخذ عينات).
                         </li>
-                        <li>في حالة توسيع التضيقات، محاولات إيقاف النزيف عن طريق الحقن أو الربط أو الحرارة، إزالة
+                        <li style="margin-bottom: 5px;">في حالة توسيع التضيقات، محاولات إيقاف النزيف عن طريق الحقن أو
+                            الربط أو الحرارة، إزالة
                             اللحميات وأخذ العينات أتفهم أنه توجد فرصة صغيرة للنزف أو الانثقاب مع احتمالية التدخل الجراحي
                             أو دخول الرعاية المركزة.
                         </li>
-                        <li>أتفهم أنه من الممكن أن تحدث بعض المضاعفات عند استخدام التخدير الوريدي أو الموضعي مثل التهاب
+                        <li style="margin-bottom: 5px;">أتفهم أنه من الممكن أن تحدث بعض المضاعفات عند استخدام التخدير
+                            الوريدي أو الموضعي مثل التهاب
                             الأوردة، ألم أو انتفاخ البطن، حساسية للأدوية (انخفاض ضغط الدم، هبوط حاد في الدورة الدموية،
                             انخفاض سرعة التنفس وتوقف القلب).
                         </li>
-                        <li>كما أننى أقر بتوضيح وكتابة كل ما يخص حالتى الصحية من أمراض أو عدوى أو أي موانع للتخدير الكلي
+                        <li style="margin-bottom: 5px;">كما أننى أقر بتوضيح وكتابة كل ما يخص حالتى الصحية من أمراض أو
+                            عدوى أو أي موانع للتخدير الكلي
                             أو الموضعي.
                         </li>
-                        <li>كما أننى اتعهد بذكر تلك الموانع التي تخص التخدير الكلي أو الموضعي وأنني أتحمل مسئولية عدم
+                        <li style="margin-bottom: 5px;">كما أننى اتعهد بذكر تلك الموانع التي تخص التخدير الكلي أو
+                            الموضعي وأنني أتحمل مسئولية عدم
                             الإفصاح عن تلك الموانع كتابة عند عمل أي إجراء تشخيصي أو علاجي بالمركز دون وقوع أي مسئولية
                             على الأطباء والمركز (يتم ذكر تلك الموانع في حالة وجودها).
                         </li>
                     </ul>
                 </div>
-                <hr style="border;2px"/>
                 <hr style="border;1px"/>
-                <hr style="border;2px"/>
+                <hr style="border;1px"/>
+                <hr style="border;1px"/>
 
-<!--                <div class="row">-->
-                    <table class="table table-borderless" style="font-size:15px;" dir="rtl">
-                        <tr>
-                            <td>
-                                <span>
-                                    إسم المريض :
-                                </span>
-                            </td>
-                            <td>
-                                <span>
-                                    --------------------------
-                                </span>
-                            </td>
-                            <td>
-                                <span>
-                                    التوقيع :
-                                </span>
-                            </td>
-                            <td>
-                                <span>
-                                    --------------------------
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>
-                                    الرقم القومى :
-                                </span>
-                            </td>
-                            <td colspan="3">
-                                -
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>
-                                    ضامن المريض :
-                                </span>
-                            </td>
-                            <td>
-                                <span>
-                                    --------------------------
-                                </span>
-                            </td>
-                            <td>
-                                <span>
-                                    التوقيع :
-                                </span>
-                            </td>
-                            <td>
-                                <span>
-                                    --------------------------
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>
-                                    صفته :
-                                </span>
-                            </td>
-                            <td>
-                                <span>
-                                    --------------------------
-                                </span>
-                            </td>
-                            <td>
-                                <span>
-                                    الرقم القومى :
-                                </span>
-                            </td>
-                            <td>
-                                <span>
-                                    --------------------------
-                                </span>
-                            </td>
-                        </tr>
-                    </table>
-<!--                </div>-->
+                <table class="table table-borderless" style="font-size:14px;padding: 15px;" dir="rtl">
+                    <tr>
+                        <td>
+                            <span>
+                                إسم المريض :
+                            </span>
+
+                        </td>
+                        <td>
+                            <span t-field="doc.partner_id.name"/>
+                        </td>
+                        <td>
+                            <span>
+                                التوقيع :
+                            </span>
+                        </td>
+                        <td>
+                            <span>
+                                --------------------------
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>
+                                الرقم القومى :
+                            </span>
+                        </td>
+                        <td colspan="3">
+                            <span t-field="doc.partner_id.vat"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>
+                                ضامن المريض :
+                            </span>
+                        </td>
+                        <td>
+                            <span>
+                                --------------------------
+                            </span>
+                        </td>
+                        <td>
+                            <span>
+                                التوقيع :
+                            </span>
+                        </td>
+                        <td>
+                            <span>
+                                --------------------------
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>
+                                صفته :
+                            </span>
+                        </td>
+                        <td>
+                            <span>
+                                --------------------------
+                            </span>
+                        </td>
+                        <td>
+                            <span>
+                                الرقم القومى :
+                            </span>
+                        </td>
+                        <td>
+                            <span>
+                                --------------------------
+                            </span>
+                        </td>
+                    </tr>
+                </table>
             </t>
         </template>
 

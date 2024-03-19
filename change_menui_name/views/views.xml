@@ -18,6 +18,9 @@
         <record id="sale.sale_menu_root" model="ir.ui.menu">
             <field name="name">Reception</field>
         </record>
+        <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+            <field name="name">Reception</field>
+        </record>
         <record id="view_order_form_inherit_change_name" model="ir.ui.view">
             <field name="name">sale.order.form.change.name</field>
             <field name="model">sale.order</field>

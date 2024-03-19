@@ -12,12 +12,11 @@
     'depends': ['base', 'sale_management', 'sale', 'stock', 'sale_stock', 'account', 'mail', 'purchase',],
 
     'data': [
-        'security/ir.model.access.csv',
-        'data/new_purchase_data.xml',
-        'views/views.xml',
+        # 'security/ir.model.access.csv',
+
+        'views/sale_order_inh_view.xml',
         'views/stock_picking_view.xml',
-        'views/templates.xml',
-        'views/new_purchase_view.xml',
+        'report/templates.xml',
     ],
     'application': True,
     'installable': True,

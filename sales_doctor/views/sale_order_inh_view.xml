@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
         <record id="view_order_form_inherited" model="ir.ui.view">
@@ -10,10 +11,11 @@
                 </field>
                 <xpath expr="//button[@id='create_invoice']" position="attributes">
                     <attribute name="invisible">state != 'dis_change'</attribute>
+                    <attribute name="string">pay</attribute>
                 </xpath>
                 <!-- Do the same for the 'Create Invoice Percentage' if necessary -->
                 <xpath expr="//button[@id='create_invoice_percentage']" position="attributes">
-                    <attribute name="invisible">state != 'dis_change'</attribute>
+                    <attribute name="invisible">state != 'dis_change' or invoice_status != 'no'</attribute>
                 </xpath>
 
                 <xpath expr="//button[@name='action_draft']" position="attributes">
@@ -44,9 +46,14 @@
                     </button>
                 </xpath>
                 <xpath expr="//field[@name='payment_term_id']" position="after">
-                    <field name="endoscopy_date" invisible="not endoscopy_date"/>
-                    <field name="post_recovery_date" invisible="not post_recovery_date"/>
-                    <field name="dis_change_date" invisible="not dis_change_date"/>
+                    <field name="draft_date" invisible="0"/>
+                    <field name="endoscopy_date" invisible="1"/>
+                    <field name="post_recovery_date" invisible="1"/>
+                    <field name="dis_change_date" invisible="1"/>
+
+                    <field name="to_endoscopy" invisible="not endoscopy_date"/>
+                    <field name="to_post_recovery" invisible="not post_recovery_date"/>
+                    <field name="to_discharge" invisible="not dis_change_date"/>
                 </xpath>
                 <xpath expr="//field[@name='state']" position="replace">
                     <field name="state" widget="statusbar"
@@ -64,14 +71,35 @@
                     <field name="partner_id" string="Customer Phone"
                            filter_domain="[('partner_id.phone', 'ilike', self)]"/>
                 </xpath>
-                <filter name="my_sale_orders_filter" position="after">
-
-<!--                    <filter string="Today's Quotations" name="todays_quotations"-->
-<!--                            />-->
-                </filter>
+                <xpath expr="//search" position="inside">
+                    <!-- Add the new filter for orders from the start of the day to now -->
+                    <!--                    <filter string="Today" name="today_filter" domain="[-->
+                    <!--    ('create_date', '>=', datetime.datetime.combine(context_today()),-->
+                    <!--    ('create_date', '&lt;', (datetime.datetime.combine(context_today() + relativedelta(days=1)))]"/>-->
+                    <!--                    <filter string="Today" name="today_filter" domain="[-->
+                    <!--    ('create_date', '>=', context_today()),-->
+                    <!--    ('create_date', '&lt;', (context_today() + 1))-->
+                    <!--]"/>-->
+<!--                    <filter string="Today Activities" name="activities_today"-->
+<!--                            domain="[('my_activity_date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>-->
+                </xpath>
             </field>
         </record>
 
+        <!--         <record id="view_sale_order_filter_custom" model="ir.ui.view">-->
+        <!--            <field name="name">sale.order.search.custom</field>-->
+        <!--            <field name="model">sale.order</field>-->
+        <!--            <field name="inherit_id" ref="sale.view_sales_order_filter"/>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <search>-->
+        <!--                    &lt;!&ndash; Add a separator for better UI &ndash;&gt;-->
+        <!--                    <separator/>-->
+        <!--                    &lt;!&ndash; Add the new filter &ndash;&gt;-->
+        <!--                    <filter string="Today's Orders" name="todays_orders"-->
+        <!--                            domain="[('create_date', '&gt;=', context_today().strftime('%Y-%m-%d'))]"/>-->
+        <!--                </search>-->
+        <!--            </field>-->
+        <!--        </record>-->
 
         <record id="view_partner_doctor_form" model="ir.ui.view">
             <field name="model">res.partner</field>
