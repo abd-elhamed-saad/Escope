@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Purchase Inherit",
+    'name': "simple Purchase Inherit",
     'summary': """    """,
     'description': """   """,
     'author': "Abd El-hamed Saad",
@@ -10,12 +10,10 @@
     'license': 'LGPL-3',
     'application': True,
     'auto_install': False,
-    'depends': ['base', 'purchase','account' ],
+    'depends': ['base', 'purchase', 'account'],
     'data': [
-        'security/ir.model.access.csv',
-        'data/new_purchase_data.xml',
-        'views/new_purchase_view.xml',
-        'views/views.xml',
-
+        # 'security/ir.model.access.csv',
+        'data/simple_inherit_purchase_sequence.xml',
+        'views/simple_inherit_purchase_views.xml',
     ],
 }

@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+        <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+            <field name="domain">[('is_sample', '!=', True)]</field>
+        </record>
+
+        <record id="simple_inherit_purchase_action" model="ir.actions.act_window">
+            <field name="name">Simple Inherited Purchases</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_sample', '=', True)]</field>
+            <field name="context">{'default_is_sample': True}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first simple inherited purchase
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_simple_inherit_purchase"
+                  name="Simple Inherited Purchases"
+                  parent="purchase.menu_procurement_management"
+                  action="simple_inherit_purchase_action"
+                  sequence="10"/>
+
+    </data>
+</odoo>
