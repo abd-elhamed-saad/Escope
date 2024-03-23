@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
-
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
 from odoo.exceptions import UserError, ValidationError
 
@@ -22,6 +21,10 @@ class SaleOrder(models.Model):
     state = fields.Selection(selection=SALE_ORDER_STATE, string="Status", readonly=True, copy=False, index=True,
                              tracking=3, default='draft')
     doctor_sale_id = fields.Many2one('res.partner', string='Doctor', domain=[('is_doctor', '=', True)])
+
+    draft_date = fields.Datetime(string="Reception Date", copy=False, readonly=True,
+                                 default=lambda self: fields.Datetime.now())
+    per_recovery_date = fields.Datetime(string="per Recovery Date", readonly=True)
     endoscopy_date = fields.Datetime(string="Endoscopy Date", readonly=True)
     post_recovery_date = fields.Datetime(string="Post Recovery Date", readonly=True)
     dis_change_date = fields.Datetime(string="Discharge Date", readonly=True)
@@ -29,8 +32,7 @@ class SaleOrder(models.Model):
     medical_endoscope_id = fields.Many2one('medical.endoscopes', string='Related Endoscope')
     medical_endoscope_count = fields.Integer(string='Endoscope Count', compute='_compute_medical_endoscope_count')
 
-    draft_date = fields.Datetime(string="Draft Date",)
-
+    to_order_duration = fields.Char(string="Per Recovery", compute='_compute_durations')
     to_endoscopy = fields.Char(string="Endoscopy", compute='_compute_durations', )
     to_post_recovery = fields.Char(string="Post Recovery", compute='_compute_durations', )
     to_discharge = fields.Char(string="Discharge", compute='_compute_durations', )
@@ -43,15 +45,7 @@ class SaleOrder(models.Model):
             'sale_order_id': self.id,
             # Add more fields as needed
         })
-        # Redirect to the newly created medical endoscopes record
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Medical Endoscopes',
-            'view_mode': 'form',
-            'res_model': 'medical.endoscopes',
-            'res_id': medical_endoscope_rec.id,
-            'target': 'current',
-        }
+        self._compute_medical_endoscope_count()
 
     @api.depends('medical_endoscope_id')
     def _compute_medical_endoscope_count(self):
@@ -61,20 +55,20 @@ class SaleOrder(models.Model):
 
     def action_view_medical_endoscopes(self):
         self.ensure_one()
-        # Your action logic here, typically returning an action dictionary
         return {
             'type': 'ir.actions.act_window',
             'name': 'Related Endoscopes',
-            'view_mode': 'tree,form',
+            'view_mode': 'form',
             'res_model': 'medical.endoscopes',
             'domain': [('sale_order_id', '=', self.id)],
             'context': "{'create': False}",
         }
 
     def action_confirm(self):
+        """ Confirm the sale orders and set per_recovery_date to now for each."""
         for order in self:
-            if order.state == 'draft':
-                order.draft_date = fields.Datetime.now()
+            if not order.per_recovery_date:
+                order.per_recovery_date = fields.Datetime.now()
         super(SaleOrder, self).action_confirm()
 
     def action_endoscopy(self):
@@ -89,29 +83,31 @@ class SaleOrder(models.Model):
         self.ensure_one()
         self.write({'state': 'dis_change', 'dis_change_date': fields.Datetime.now()})
 
-    @api.depends('endoscopy_date', 'draft_date', 'post_recovery_date', 'dis_change_date')
+    @api.depends('endoscopy_date', 'per_recovery_date', 'draft_date', 'post_recovery_date', 'dis_change_date')
     def _compute_durations(self):
         for record in self:
-            # Compute duration from draft to endoscopy
-            if record.endoscopy_date and record.draft_date:
-                delta = record.endoscopy_date - record.draft_date
-                record.to_endoscopy = '%d hours, %d minutes, %d seconds' % (
-                    delta.days * 24 + delta.seconds // 3600, (delta.seconds % 3600) // 60, delta.seconds % 60)
-            else:
-                record.to_endoscopy = "Not available"
+            record.to_order_duration = "Not available"
+            record.to_endoscopy = "Not available"
+            record.to_post_recovery = "Not available"
+            record.to_discharge = "Not available"
 
-            # Compute duration from endoscopy to post recovery
-            if record.post_recovery_date and record.endoscopy_date:
-                delta = record.post_recovery_date - record.endoscopy_date
-                record.to_post_recovery = '%d hours, %d minutes, %d seconds' % (
-                    delta.days * 24 + delta.seconds // 3600, (delta.seconds % 3600) // 60, delta.seconds % 60)
-            else:
-                record.to_post_recovery = "Not available"
+            if record.draft_date:
+                if record.per_recovery_date:
+                    delta = record.per_recovery_date - record.draft_date
+                    record.to_order_duration = '%d days, %d hours, %d minutes' % (
+                        delta.days * 24 + delta.seconds // 3600, (delta.seconds % 3600) // 60, delta.seconds % 60)
 
-            # Compute duration from post recovery to discharge
-            if record.dis_change_date and record.post_recovery_date:
-                delta = record.dis_change_date - record.post_recovery_date
-                record.to_discharge = '%d hours, %d minutes, %d seconds' % (
-                    delta.days * 24 + delta.seconds // 3600, (delta.seconds % 3600) // 60, delta.seconds % 60)
-            else:
-                record.to_discharge = "Not available"
+                if record.endoscopy_date:
+                    delta = record.endoscopy_date - record.per_recovery_date
+                    record.to_endoscopy = '%d hours, %d minutes, %d seconds' % (
+                        delta.days * 24 + delta.seconds // 3600, (delta.seconds % 3600) // 60, delta.seconds % 60)
+
+                if record.post_recovery_date:
+                    delta = record.post_recovery_date - record.endoscopy_date
+                    record.to_post_recovery = '%d hours, %d minutes, %d seconds' % (
+                        delta.days * 24 + delta.seconds // 3600, (delta.seconds % 3600) // 60, delta.seconds % 60)
+
+                if record.dis_change_date:
+                    delta = record.dis_change_date - record.post_recovery_date
+                    record.to_discharge = '%d hours, %d minutes, %d seconds' % (
+                        delta.days * 24 + delta.seconds // 3600, (delta.seconds % 3600) // 60, delta.seconds % 60)

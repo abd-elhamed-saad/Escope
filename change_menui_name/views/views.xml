@@ -37,7 +37,6 @@
                 </xpath>
                 <xpath expr="//field[@name='validity_date']" position="attributes">
                     <attribute name="string">Reception Date</attribute>
-                    <attribute name="invisible">0</attribute>
                 </xpath>
                 <xpath expr="//field[@name='date_order']" position="attributes">
                     <attribute name="string">Enter Date</attribute>
