@@ -16,6 +16,7 @@
 
         'views/sale_order_inh_view.xml',
         'views/stock_picking_view.xml',
+        'views/account_payment.xml',
         'report/templates.xml',
     ],
     'application': True,
