@@ -37,6 +37,13 @@ class SaleOrder(models.Model):
     to_post_recovery = fields.Char(string="Post Recovery", compute='_compute_durations', )
     to_discharge = fields.Char(string="Discharge", compute='_compute_durations', )
 
+    def _create_invoices(self, grouped=False, final=False, date=None):
+        state = self.state
+        self.state = 'sale'
+        res = super()._create_invoices(grouped, final, date)
+        self.state = state
+        return res
+
     def action_create_medical_endoscopes(self):
         self.ensure_one()
         medical_endoscope_rec = self.env['medical.endoscopes'].create({
@@ -70,6 +77,16 @@ class SaleOrder(models.Model):
             if not order.per_recovery_date:
                 order.per_recovery_date = fields.Datetime.now()
         super(SaleOrder, self).action_confirm()
+    # def action_confirm(self):
+    #     """Confirm the sale orders and set per_recovery_date to now for each.
+    #     Additionally, allow reconfirmation after discharge to enable invoice creation."""
+    #     for order in self:
+    #         if not order.per_recovery_date:
+    #             order.per_recovery_date = fields.Datetime.now()
+    #         # Allow moving the order back to 'sale' state from 'dis_change' or any other state.
+    #         if order.state in ['dis_change', 'post_recovery', 'endoscopy', 'cancel']:
+    #             order.write({'state': 'sale'})
+    #     super(SaleOrder, self).action_confirm()
 
     def action_endoscopy(self):
         self.ensure_one()

@@ -14,6 +14,7 @@
         'views/e_device.xml',
         'views/inherit_view_web.xml',
         'views/process_name_view.xml',
+        'reports/layout_header_fotter.xml',
         'reports/medical_action_report.xml',
         'reports/report_medical.xml',
         'reports/photo_medical.xml',

@@ -9,8 +9,8 @@
                 <field name="partner_id" position="after">
                     <field name="doctor_sale_id"/>
                 </field>
-                <xpath expr="//button[@id='create_invoice_percentage']" position="attributes">
-                    <attribute name="invisible">state != 'dis_change' or invoice_status != 'no'</attribute>
+                <xpath expr="//button[@id='create_invoice']" position="attributes">
+                    <attribute name="invisible">state not in ('dis_change') and invoice_status != 'to invoice'</attribute>
                 </xpath>
 
                 <xpath expr="//button[@name='action_draft']" position="attributes">
