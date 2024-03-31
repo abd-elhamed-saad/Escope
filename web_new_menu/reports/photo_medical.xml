@@ -9,8 +9,8 @@
                     <div class="page">
 
                         <h2 style="color: red;">
-                            <span t-field="o.process_ids.name"/>-/-
-                            <span t-field="o.name"/>
+                            <span t-field="o.process_name_display"/>
+                            <!--                            <span t-field="o.name"/>-->
                         </h2>
                         <table class="table table-lg m-0 table-borderless border border-right-0 border-left-0 border-info">
                             <tr>

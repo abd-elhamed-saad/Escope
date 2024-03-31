@@ -7,7 +7,33 @@ class NewModule(models.Model):
     _inherit = 'medical.endoscopes'
 
     e_device_ids = fields.Many2one('e.device', string='Scope Number')
-    process_ids = fields.Many2one('process.name',  string='Process Name')
+    process_name = fields.Selection(string="Process Name",
+                                    selection=[('upper', 'Upper Endoscopy'), ('eus', 'EUS'),
+                                               ('ercp', 'ERCP'), ('colonoscopy', 'Colonoscopy'), ], default='upper')
+    process_ids = fields.Many2one('process.name', string='Process Name', invisible=True)
+    process_name_display = fields.Char(compute='_compute_process_name_display')
+
+    # New fields specific to 'Upper Endoscopy'
+    esophagus = fields.Text(string="Esophagus")
+    stomach = fields.Text(string="Stomach")
+    pylorus = fields.Text(string="Pylorus")
+    duodenum = fields.Text(string="Duodenum")
+
+    # New field specific to 'EUS'
+    pancreas = fields.Text(string="Pancreas")
+
+    # New field specific to 'ERCP'
+    papilla = fields.Text(string="Papilla")
+
+    # New field specific to 'colonoscopy'
+    colon = fields.Text(string="Colon")
+    referring = fields.Text(string="Referring Doctor")
+
+    @api.depends('process_name')
+    def _compute_process_name_display(self):
+        selection_dict = dict(self._fields['process_name'].selection)
+        for record in self:
+            record.process_name_display = selection_dict.get(record.process_name, '')
 
 
 class EDevice(models.Model):
@@ -34,5 +60,3 @@ class EDeviceLine(models.Model):
     maintenance_company = fields.Char(string='اسم شركة الصيانة')
     maintenance_cost = fields.Float(string='التكلفة')
     note = fields.Text(string='ملاحظات')
-
-

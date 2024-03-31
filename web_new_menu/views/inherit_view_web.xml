@@ -11,7 +11,21 @@
                     <field name="e_device_ids" options="{'no_create': True}"/>
                 </xpath>
                 <xpath expr="//field[@name='date']" position="before">
-                    <field name="process_ids" options="{'no_create': True}"/>
+<!--                    <field name="process_ids" options="{'no_create': True}" invisible="1"/>-->
+                    <field name="process_name" />
+                </xpath>
+                <xpath expr="//field[@name='findings']" position="after">
+                    <field name="esophagus" invisible="process_name !=  'upper'" placeholder="Esophagus ....."/>
+                    <field name="stomach" invisible="process_name !=  'upper'" placeholder="Stomach ....."/>
+                    <field name="pylorus" invisible="process_name !=  'upper'" placeholder="Pylorus ....."/>
+                    <field name="duodenum" invisible="process_name !=  'upper'" placeholder="Duodenum ....."/>
+
+                    <field name="pancreas" invisible="process_name !=  'eus'" placeholder="Pancreas ....."/>
+
+                    <field name="papilla" invisible="process_name !=  'ercp'" placeholder="Papilla ....."/>
+
+                    <field name="colon" invisible="process_name !=  'colonoscopy'" placeholder="Colon ....."/>
+                    <field name="referring" invisible="process_name !=  'colonoscopy'" placeholder="Referring Doctor ....."/>
                 </xpath>
 
             </field>
