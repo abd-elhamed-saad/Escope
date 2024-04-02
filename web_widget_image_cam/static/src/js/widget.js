@@ -71,7 +71,7 @@ class ImageCaptureDialog extends Component {
             });
             recorder.startRecording();
             this.videoRecorder = recorder;
-            alert("Video recording started!");
+//            alert("Video recording started!");
             document.getElementById('recordButton').style.display = 'none';
         } else {
             this.recording = false;
@@ -114,6 +114,7 @@ class ImageCaptureDialog extends Component {
         if (imgElement && (!imgElement.src || imgElement.src === "")) {
             imgElement.src = 'data:image/png;base64,' + imageData;
             img.value=imageData
+            console.log("!!!!!!!!!!!!!!imageData",imageData)
             imgElement.style.display = 'block';
             break;
         }
@@ -327,6 +328,7 @@ class ImageCaptureDialog extends Component {
             img100:img100.value
         }
         this._send_data(EditData,ResId)
+        console.log("this._send_data(EditData,ResId)",this._send_data(EditData,ResId))
         this.props.close();
     }
     _send_data(EditData,recordId){
@@ -352,7 +354,7 @@ class ImageCaptureDialog extends Component {
             recorder.startRecording();
             this.videoRecorder = recorder;
 
-            alert("Video recording started!");
+//            alert("Video recording started!");
         } else {
             // Stop recording
             this.recording = false;
