@@ -76,7 +76,7 @@
                     <tr>
                         <td>دكتور التحويل :</td>
                         <td>
-                            <span t-field="doc.doctor_sale_id"/>
+                            <span>.</span>
                         </td>
                         <td>السن :</td>
                         <td>
@@ -128,11 +128,11 @@
                     <tr>
                         <td>نوع الدخول :</td>
                         <td>
-                            <span>.</span>
+                            <span t-field="doc.payment_term_id"/>
                         </td>
                         <td>الطبيب الاستشاري :</td>
                         <td>
-                            <span>.</span>
+                            <span t-field="doc.doctor_sale_id"/>
                         </td>
                     </tr>
                     <tr>
