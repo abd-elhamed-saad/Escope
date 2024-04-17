@@ -6,7 +6,7 @@ from dateutil.relativedelta import relativedelta
 from odoo.exceptions import UserError, ValidationError
 
 
-class ResPartner(models.Model):
+class ResPartnerEdit(models.Model):
     _inherit = 'res.partner'
 
     nationality_cust = fields.Char(string="Nationality", )
@@ -18,7 +18,7 @@ class ResPartner(models.Model):
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
-        res = super(ResPartner, self).name_search(name, args=args, operator=operator, limit=limit)
+        res = super(ResPartnerEdit, self).name_search(name, args=args, operator=operator, limit=limit)
 
         if not res:
             partners = self.search([('phone', operator, name)] + args, limit=limit)

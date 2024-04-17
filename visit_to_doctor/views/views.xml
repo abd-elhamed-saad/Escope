@@ -1,0 +1,65 @@
+<odoo>
+    <data>
+        <record id="view_form_visit" model="ir.ui.view">
+            <field name="name">visit.form</field>
+            <field name="model">user.visit</field>
+            <field name="arch" type="xml">
+                <form string="Visit">
+                    <sheet>
+                        <header>
+                            <button string="Start Visit" class="btn-primary"
+                                    type="object" name="button_start_time"/>
+                            <button string="End Visit"
+                                    type="object" name="button_end_time"/>
+                        </header>
+                        <div class="oe_title">
+                            <h1>
+                                <field class="text-break" name="doctor_id" placeholder="Doctor Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="state"/>
+
+                            </group>
+                            <group>
+                                <field name="start_time"/>
+                                <field name="end_time"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Details">
+                                <group>
+                                    <field name="description"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_tree_visit" model="ir.ui.view">
+            <field name="name">tree.visit</field>
+            <field name="model">user.visit</field>
+            <field name="arch" type="xml">
+                <tree string="Visit">
+                    <field name="doctor_id"/>
+                    <field name="start_time"/>
+                    <field name="end_time"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_visit" model="ir.actions.act_window">
+            <field name="name">Visits</field>
+            <field name="res_model">user.visit</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="main_menu" name="Visits" web_icon="visit_to_doctor,static/description/doctor_visit.png"/>
+        <menuitem id="menu_visit" name="Visit" parent="main_menu" action="visit_to_doctor.action_visit"/>
+
+
+    </data>
+</odoo>
