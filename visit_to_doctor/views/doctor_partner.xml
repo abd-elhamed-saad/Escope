@@ -1,44 +1,5 @@
 <odoo>
     <data>
-        <!--        <record id="view_partner_form_inherit" model="ir.ui.view">-->
-        <!--            <field name="name">res.partner.form.inherit</field>-->
-        <!--            <field name="model">res.partner</field>-->
-        <!--            <field name="inherit_id" ref="base.view_partner_form"/>-->
-        <!--            <field name="arch" type="xml">-->
-        <!--                <xpath expr="//notebook/page[@name='sales_purchases']" position="attributes">-->
-        <!--                    <attribute name="invisible">1</attribute>-->
-        <!--                </xpath>-->
-        <!--                <xpath expr="//notebook/page[@name='contact_addresses']" position="attributes">-->
-        <!--                    <attribute name="invisible">1</attribute>-->
-        <!--                </xpath>-->
-        <!--                <xpath expr="//notebook/page[@name='accounting']" position="attributes">-->
-        <!--                    <attribute name="invisible">1</attribute>-->
-        <!--                </xpath>-->
-        <!--                <xpath expr="//field[@name='vat']" position="after">-->
-        <!--                    <field name="create_time"/>-->
-        <!--                    <field name="end_visit_time"/>-->
-        <!--                </xpath>-->
-        <!--                <xpath expr="//sheet" position="inside">-->
-        <!--                    <header>-->
-        <!--                        <button string="End Visit"-->
-        <!--                                type="object" name="button_end_visit"/>-->
-        <!--                    </header>-->
-        <!--                </xpath>-->
-        <!--            </field>-->
-        <!--        </record>-->
-        <!--               <xpath expr="//field[@name='vat']" position="after">-->
-        <!--                    <field name="create_time" invisible="context.get('view_doctor_mode', False)"/>-->
-        <!--                    <field name="end_visit_time" invisible="context.get('view_doctor_mode', False)"/>-->
-        <!--                </xpath>-->
-
-        <!--        <record model="ir.actions.act_window" id="action_partner_doctor">-->
-        <!--            <field name="name">Doctors</field>-->
-        <!--            <field name="res_model">res.partner</field>-->
-        <!--            <field name="view_mode">tree,form</field>-->
-        <!--            <field name="domain">[('is_doctor', '=', True)]</field>-->
-        <!--            <field name="context">{'default_is_doctor': True}</field>-->
-        <!--        </record>-->
-
         <record id="view_partner_form_doctor" model="ir.ui.view">
             <field name="name">res.partner.form.doctor</field>
             <field name="model">res.partner</field>
@@ -55,6 +16,11 @@
                 <xpath expr="//field[@name='vat']" position="after">
                     <field name="create_time" invisible="not context.get('view_doctor_mode', False)"/>
                     <field name="end_visit_time" invisible="not context.get('view_doctor_mode', False)"/>
+                    <field name="is_discount" invisible="not context.get('view_doctor_mode', False)"
+                           widget="boolean_toggle"/>
+                    <field name="discount_rate"
+                           invisible="not context.get('view_doctor_mode', False) or is_discount != True"
+                           widget="percentage"/>
                 </xpath>
                 <xpath expr="//field[@name='vat']" position="attributes">
                     <attribute name="invisible">context.get('view_doctor_mode', False) and name == False</attribute>
@@ -64,6 +30,10 @@
                 </xpath>
                 <xpath expr="//field[@name='nationality_country_id']" position="attributes">
                     <attribute name="invisible">context.get('view_doctor_mode', False) and name == False</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='is_doctor']" position="attributes">
+                    <attribute name="invisible">context.get('view_doctor_mode', False)</attribute>
                 </xpath>
 
                 <xpath expr="//div[@class='o_address_format']" position="attributes">
@@ -92,5 +62,17 @@
             <field name="context">{'default_is_doctor': True, 'view_doctor_mode': True}</field>
         </record>
         <menuitem id="menu_doctor" name="Doctor" parent="visit_to_doctor.main_menu" action="action_partner_doctor"/>
+
+         <record id="account_move_form_l10n_cn" model="ir.ui.view">
+            <field name="name">l10n_cn.account.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="doctor_dis_id"/>
+                    <field name="doctor_discount" widget="percentage" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>

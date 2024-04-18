@@ -8,7 +8,7 @@
     'category': 'Services',
     'version': '1.0',
     'license': "LGPL-3",
-    'depends': ['base', 'sales_doctor'],
+    'depends': ['base', 'sales_doctor', 'account'],
     'data': [
         'security/ir.model.access.csv',
         'views/views.xml',
