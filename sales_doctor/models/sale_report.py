@@ -15,6 +15,7 @@ class ResPartnerEdit(models.Model):
     member_age = fields.Char(string="Full Age", store=True)
     doctor = fields.Many2one('res.partner', related="sale_order_ids.doctor_sale_id", string="Doctor")
     nationality_country_id = fields.Many2one('res.country', string='Nationality')
+    gender = fields.Selection(string="Gander", selection=[('male', 'Male'), ('female', 'Female')], default='male')
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):

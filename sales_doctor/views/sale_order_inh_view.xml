@@ -114,6 +114,9 @@
                 <xpath expr="//field[@name='vat']" position="before">
                     <field name="nationality_country_id" options="{'no_create': True, 'no_open': True}"/>
                 </xpath>
+                <xpath expr="//field[@name='vat']" position="before">
+                    <field name="gender" />
+                </xpath>
             </field>
         </record>
 

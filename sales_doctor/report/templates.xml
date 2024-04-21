@@ -40,7 +40,7 @@
         <template id="patient_new_reception">
             <t t-call="web.basic_layout">
                 <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
-                <table border="1" style="width: 100%;padding: 15px;text-align: center;" dir="rtl">
+                <table border="1" style="width: 100%;padding: 15px;text-align: center;height: auto;" dir="rtl">
                     <tr>
                         <td>
                             <span>اسم المريض :</span>
@@ -86,7 +86,7 @@
                     <tr>
                         <td>النوع :</td>
                         <td>
-                            <span>.</span>
+                            <span t-field="doc.partner_id.gender"/>
                         </td>
                         <td>تاريخ الدخول :</td>
                         <td>
@@ -128,7 +128,7 @@
                     <tr>
                         <td>نوع الدخول :</td>
                         <td>
-                            <span t-field="doc.payment_term_id"/>
+                            <span t-field="doc.pricelist_id"/>
                         </td>
                         <td>الطبيب الاستشاري :</td>
                         <td>
@@ -138,11 +138,11 @@
                     <tr>
                         <td>شركة التأمين :</td>
                         <td>
-                            <span>.</span>
+                            <span t-field="doc.pricelist_id"/>
                         </td>
                         <td>القائمة :</td>
                         <td>
-                            <span>.</span>
+                            <span t-field="doc.pricelist_id"/>
                         </td>
                     </tr>
                 </table>
@@ -159,7 +159,11 @@
                             <span>شكوي المريض</span>
                         </td>
                         <td colspan="3">
-                            <span>.....</span>
+
+                            <span t-if="len(doc.order_line) >= 1" t-foreach="doc.order_line" t-as="line">
+                                <t t-if="line_index &gt; 0">/</t>
+                                <span t-esc="line.product_template_id.name"/>
+                            </span>
                         </td>
                     </tr>
                     <tr>
