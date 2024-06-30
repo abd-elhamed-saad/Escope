@@ -12,6 +12,7 @@
                     <field name="patient_phone" string="Patient Phone"/>
                 </search>
             </field>
+
         </record>
 
         <record id="medical_endoscopes_view_tree" model="ir.ui.view">
@@ -26,6 +27,9 @@
                 </tree>
             </field>
         </record>
+
+
+
         <record id="medical_endoscopes_view_form" model="ir.ui.view">
             <field name="name">medical.endoscopes.view_form</field>
             <field name="model">medical.endoscopes</field>
@@ -49,6 +53,7 @@
                                 <field name="date" placeholder="Date"/>
                                 <field name="id_patient" placeholder="Patient ID"/>
                                 <field name="age"/>
+                                <field name="video_url"/>
                                 <field name="birth_date" invisible="1"/>
                                 <field name="patient_phone" invisible="1"/>
                             </group>
@@ -64,9 +69,13 @@
                             <field name="findings" placeholder="Findings ....."/>
                             <field name="conclusions" placeholder="Conclusion ....."/>
                             <field name="recommendations" placeholder="Recommendations ....."/>
-                            <!--                            <field name="video"/>-->
-                            <!--                            <field name="video_data"/>-->
+
+
+
                         </group>
+<!--                        <button name="download_all_images" string="Download All" type="object"/>-->
+                        <button name="dowonloadAllImages" type="object" class="btn-primary" string="Download All Images" icon="fa-download"/>
+
                         <notebook>
                             <page string="Page One">
                                 <table width="100%" dir="rtl">
@@ -1130,12 +1139,22 @@
                             </page>
                         </notebook>
                     </sheet>
+
                     <footer>
                         <button string="Open Camera" class="btn-primary" name="open_camera" type="button"/>
                     </footer>
+
                 </form>
+
             </field>
         </record>
+
+
+
+
+
+
+
         <record id="medical_endoscopes_action" model="ir.actions.act_window">
             <field name="name">Medical Endoscopes</field>
             <field name="type">ir.actions.act_window</field>

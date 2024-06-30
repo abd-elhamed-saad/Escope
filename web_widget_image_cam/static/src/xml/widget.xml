@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates>
 
-    <!--    <t t-inherit="web.ImageField" t-inherit-mode="extension" owl="1">-->
-    <!--        <xpath expr="//button[hasclass('o_clear_file_button')]" position="before">-->
-    <!--            <button-->
-    <!--                    class=" btn btn-light border-0 rounded-circle m-1 p-1"-->
-    <!--                    data-tooltip="Capture"-->
-    <!--                    aria-label="Capture"-->
-    <!--                    t-on-click="onOpenCam">-->
-    <!--                <i class="fa fa-camera fa-fw"/>-->
-    <!--            </button>-->
-    <!--        </xpath>-->
-    <!--    </t>-->
 
 
     <t t-name="web_widget_image_cam.CameraDialog" owl="1">
@@ -295,15 +284,16 @@
                     Capture Image
                 </button>
                 <button id="recordButton" class="record-video-btn" t-on-click="_recordVideo">Record Video</button>
+                <button id="pauseVideo" class="record-video-btn" t-on-click="_pauseVideo">Pause Video</button>
+                <button id="resumeVideo" class="record-video-btn" t-on-click="_resumeVideo">Resume Video</button>
                 <button class="record-video-btn" t-on-click="_saveMedical">
-                    Save and Close
+                    Save
                 </button>
-                <button class="record-video-btn" t-on-click.stop="props.close">Close</button>
-<!--                class="btn btn-primary"-->
+                <button class="record-video-btn" t-on-click="_closeButton">Close</button>
+                <div class="download-links"></div>
             </t>
         </Dialog>
     </t>
-
     <t t-name="mrp_subcontracting.PickingFormController" t-inherit="web.FormView" t-inherit-mode="extension">
         <xpath expr="//t[@t-set-slot='control-panel-additional-actions']" position="after">
             <t t-if="props.resModel=='medical.endoscopes'">

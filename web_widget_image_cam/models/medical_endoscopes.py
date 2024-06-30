@@ -1,10 +1,18 @@
-from odoo import api, fields, models, _
+from odoo import api, fields, models, http, _
 from datetime import date, datetime
 from dateutil.relativedelta import relativedelta
 import base64
 
 
+import io
+import zipfile
+
+
+
+
+
 class MedicalEndoscopes(models.Model):
+    # _inherit = 'medical.endoscopes'
     _name = 'medical.endoscopes'
     _description = 'Medical Endoscopes'
 
@@ -14,6 +22,7 @@ class MedicalEndoscopes(models.Model):
 
     video = fields.Binary(string="Video")
     video_data = fields.Char(string="Video Data")
+
 
     def save_video(self, video_data):
         print("@@@@@@@@@@@@@_save_video", video_data)
@@ -227,6 +236,43 @@ class MedicalEndoscopes(models.Model):
     is_img99 = fields.Boolean(string="Is Image 99", )
     is_img100 = fields.Boolean(string="Is Image 100", )
 
+
+
+
+    def dowonloadAllImages(self):
+        self.ensure_one()  # Ensures the method is called on a single record
+        buffer = io.BytesIO()
+        with zipfile.ZipFile(buffer, 'w') as zip_file:
+            for counter in range(1, 101):
+                field_name = f'img{counter}'
+                image_data = getattr(self, field_name)
+                if image_data:
+                    image_filename = f'{field_name}.jpg'
+                    zip_file.writestr(image_filename, base64.b64decode(image_data))
+
+        buffer.seek(0)
+        zip_content = buffer.read()
+
+        # Format the ID to be five digits long with leading zeros
+        formatted_id = f'{self.id:05d}'
+        zip_filename = f'MI-{formatted_id}.zip'
+
+        # Create an attachment to hold the zip file
+        attachment = self.env['ir.attachment'].create({
+            'name': zip_filename,
+            'type': 'binary',
+            'datas': base64.b64encode(zip_content),
+            'res_model': self._name,
+            'res_id': self.id,
+        })
+
+        return {
+            'type': 'ir.actions.act_url',
+            'url': f'/web/content/{attachment.id}?download=true',
+            'target': '_blank',
+        }
+        # return True
+
     doctor_id = fields.Many2one('res.partner', string='Doctor', domain=[('is_doctor', '=', True)])
     patient_id = fields.Many2one('res.partner', string='Patient Name')
     operator = fields.Char(string="Operator")
@@ -247,6 +293,7 @@ class MedicalEndoscopes(models.Model):
     patient_phone = fields.Char(string="Patient Phone", related="patient_id.phone", readonly=True)
 
     sale_order_id = fields.Many2one('sale.order', string="Sale Order")
+    video_url = fields.Char(string='Video URL')
 
     @api.model_create_multi
     def create(self, vals_list):
